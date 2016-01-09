@@ -24,6 +24,13 @@ class Category extends Entity implements CategoryInterface
     protected $closure = 'App\CategoryClosure';
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
      * Get translation for current language.
      *
      * @return mixed

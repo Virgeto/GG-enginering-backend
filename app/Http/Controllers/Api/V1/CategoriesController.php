@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Category;
 use App\Queries\Category\Store;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
@@ -14,11 +15,14 @@ class CategoriesController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param CategoryRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CategoryRequest $request)
     {
-        //
+        $categories = Category::getTree();
+
+        return $this->response->ok($categories);
     }
 
     /**

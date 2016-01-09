@@ -4,6 +4,7 @@
 namespace App\Queries\Category;
 
 use App\Category;
+use Illuminate\Support\Facades\DB;
 
 
 class Store

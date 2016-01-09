@@ -1,12 +1,13 @@
 <?php
 
 
-use App\Member;
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use App\Role;
 use App\User;
+use App\Member;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
         // Production Seeders
         $this->call(RoleSeeder::class);
         $this->call(OwnerSeeder::class);
+        $this->call(CategorySeeder::class);
 
         // Development Seeders and Factories.
         if (env('APP_ENV') == 'local') {
