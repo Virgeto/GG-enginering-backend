@@ -138,6 +138,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Franzose\ClosureTable\ClosureTableServiceProvider::class,
 
         /*
          * Application Service Providers...

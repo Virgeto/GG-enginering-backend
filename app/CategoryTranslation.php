@@ -4,14 +4,15 @@
 namespace App;
 
 
-class CityTranslation extends Base
+class CategoryTranslation extends Base
 {
+
     /**
-     * The database table used by the model.
+     * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'city_translations';
+    protected $table = 'category_translations';
 
     /**
      * The attributes that are mass assignable.
@@ -20,16 +21,20 @@ class CityTranslation extends Base
      */
     protected $fillable = [
         'lang',
-        'name',
+        'name'
     ];
 
     /**
-     * Fields that will not be shown in response.
+     * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
     protected $hidden = [
-        'city_id'
+        'id',
+        'category_id',
+        'created_at',
+        'updated_at'
     ];
+
 
 }

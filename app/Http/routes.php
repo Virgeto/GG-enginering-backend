@@ -22,7 +22,6 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 Route::group([
-    'prefix' => 'api',
     'namespace' => 'Api\{version}',
     'middleware' => ['api.version', 'language', 'paginate']
 ], function () {
@@ -56,17 +55,9 @@ Route::group([
         ]);
 
 
-        Route::resource('cities', 'CitiesController', [
-            'only' => ['index', 'store', 'show', 'update', 'destroy']
+        Route::resource('categories', 'CategoriesController', [
+            'only' => ['index', 'show', 'store', 'update', 'destroy']
         ]);
-
-
-        Route::resource('countries', 'CountriesController', [
-            'only' => ['index', 'store', 'show', 'update', 'destroy']
-        ]);
-
-
-        Route::get('countries/{country_id}/cities', 'CountryCitiesController@index');
     });
 });
 

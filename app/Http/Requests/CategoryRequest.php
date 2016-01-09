@@ -4,7 +4,7 @@
 namespace App\Http\Requests;
 
 
-class CountryRequest extends Request
+class CategoryRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,18 @@ class CountryRequest extends Request
      */
     public function rules()
     {
-        return [
-            //
-        ];
+
+        switch (true) {
+            case $this->wantsToStore():
+                $rules = [
+                    'parent_id' => 'exists:categories'
+                ];
+                break;
+            default:
+                $rules = [];
+                break;
+        }
+
+        return $rules;
     }
 }

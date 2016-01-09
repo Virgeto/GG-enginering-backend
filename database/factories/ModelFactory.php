@@ -11,30 +11,11 @@
 |
 */
 
+
 use App\Member;
-use App\City;
-use App\CityTranslation;
-use App\Country;
-use App\CountryTranslation;
 
 
 $factory->define(Member::class, function ($faker) {
-    return [];
-});
-
-$factory->define(Country::class, function ($faker) {
-    return [];
-});
-
-$factory->define(CountryTranslation::class, function ($faker) {
-    return [];
-});
-
-$factory->define(City::class, function ($faker) {
-    return [];
-});
-
-$factory->define(CityTranslation::class, function ($faker) {
     return [];
 });
 
