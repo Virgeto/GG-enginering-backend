@@ -21,7 +21,7 @@ class Category extends Entity implements CategoryInterface
      *
      * @var categoryClosure
      */
-    protected $closure = 'App\CategoryClosure';
+    protected $closure = CategoryClosure::class;
 
     /**
      * Indicates if the model should be timestamped.

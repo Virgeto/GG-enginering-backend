@@ -20,7 +20,11 @@ class CategoriesController extends Controller
      */
     public function index(CategoryRequest $request)
     {
-        $categories = Category::getTree();
+        $categories = Category::getRoots();
+
+        foreach ($categories as $category) {
+            $category->translation;
+        }
 
         return $this->response->ok($categories);
     }
@@ -44,12 +48,19 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param $categoryId
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($categoryId)
     {
-        //
+        $children = Category::findOrFail($categoryId)
+            ->getChildren();
+
+        foreach ($children as $child) {
+            $child->translation;
+        }
+
+        return $this->response->ok($children);
     }
 
     /**

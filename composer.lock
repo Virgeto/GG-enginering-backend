@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cba0b1878da8fc4597dd3dbc7c7e11fb",
-    "content-hash": "1fea03d6209a7b412a7d37d1b1078340",
+    "hash": "d2f6b262a5c2cda155ed4ccabd09951f",
+    "content-hash": "4d5daddc30242d15b25a11ecec75afc2",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -219,16 +219,16 @@
         },
         {
             "name": "franzose/closure-table",
-            "version": "v4.0.1",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/franzose/ClosureTable.git",
-                "reference": "d5b642b9787bded2053b75f8f5711e9b2c966831"
+                "reference": "f6a121d364a8109ee7e9e794b5b37c272650bb1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/franzose/ClosureTable/zipball/d5b642b9787bded2053b75f8f5711e9b2c966831",
-                "reference": "d5b642b9787bded2053b75f8f5711e9b2c966831",
+                "url": "https://api.github.com/repos/franzose/ClosureTable/zipball/f6a121d364a8109ee7e9e794b5b37c272650bb1c",
+                "reference": "f6a121d364a8109ee7e9e794b5b37c272650bb1c",
                 "shasum": ""
             },
             "require": {
@@ -273,7 +273,7 @@
                 "laravel",
                 "pages"
             ],
-            "time": "2015-03-09 06:18:48"
+            "time": "2016-01-06 11:18:50"
         },
         {
             "name": "illuminate/html",
