@@ -27,7 +27,7 @@ class CategoryRequest extends Request
         switch (true) {
             case $this->wantsToStore():
                 $rules = [
-                    'parent_id' => 'exists:categories'
+                    'parent_id' => 'exists:categories,id'
                 ];
                 break;
             default:

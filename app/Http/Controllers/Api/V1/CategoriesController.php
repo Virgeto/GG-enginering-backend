@@ -3,12 +3,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Queries\Category\Store;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 
 
 class CategoriesController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +29,12 @@ class CategoriesController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        dd($request->all());
+        $parentId = $request->get('parent_id');
+        $translations = $request->get('translations');
+
+        (new Store($parentId, $translations))->run();
+
+        return $this->response->created();
     }
 
     /**
