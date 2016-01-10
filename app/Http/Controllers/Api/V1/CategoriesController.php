@@ -3,7 +3,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Category;
+use App\Queries\Category\Show;
+use App\Queries\Category\Index;
 use App\Queries\Category\Store;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
@@ -20,11 +21,7 @@ class CategoriesController extends Controller
      */
     public function index(CategoryRequest $request)
     {
-        $categories = Category::getRoots();
-
-        foreach ($categories as $category) {
-            $category->translation;
-        }
+        $categories = (new Index())->run();
 
         return $this->response->ok($categories);
     }
@@ -53,12 +50,7 @@ class CategoriesController extends Controller
      */
     public function show($categoryId)
     {
-        $children = Category::findOrFail($categoryId)
-            ->getChildren();
-
-        foreach ($children as $child) {
-            $child->translation;
-        }
+        $children = (new Show($categoryId))->run();
 
         return $this->response->ok($children);
     }
@@ -66,13 +58,13 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param CategoryRequest $request
+     * @param $categoryId
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $categoryId)
     {
-        //
+
     }
 
     /**
