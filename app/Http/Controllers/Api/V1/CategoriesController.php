@@ -8,6 +8,7 @@ use App\Queries\Category\Index;
 use App\Queries\Category\Store;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Queries\Category\Update;
 
 
 class CategoriesController extends Controller
@@ -64,7 +65,12 @@ class CategoriesController extends Controller
      */
     public function update(CategoryRequest $request, $categoryId)
     {
+        $parentId = $request->get('parent_id');
+        $translations = $request->get('translations');
 
+        (new Update($categoryId, $parentId, $translations))->run();
+
+        return $this->response->noContent();
     }
 
     /**

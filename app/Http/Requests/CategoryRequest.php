@@ -29,6 +29,7 @@ class CategoryRequest extends Request
                 $rules = $this->listRules;
                 break;
             case $this->wantsToStore():
+            case $this->wantsToUpdate():
                 $rules = [
                     'parent_id' => 'exists:categories,id'
                 ];
