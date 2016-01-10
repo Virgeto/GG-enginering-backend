@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Category;
 use App\Queries\Category\Show;
 use App\Queries\Category\Index;
 use App\Queries\Category\Store;
@@ -76,11 +77,14 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param CategoryRequest $request
+     * @param $categoryId
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CategoryRequest $request, $categoryId)
     {
-        //
+        Category::findOrFail($categoryId)->delete();
+
+        return $this->response->noContent();
     }
 }
