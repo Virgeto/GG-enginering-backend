@@ -1,11 +1,9 @@
 <?php
 
-
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-
-class CreateCategoryTranslationsTable extends Migration
+class CreateCategoryImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +12,13 @@ class CreateCategoryTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_translations', function (Blueprint $table) {
+        Schema::create('category_images', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('category_id');
-            $table->string('lang', 2);
-            $table->string('name', 200);
-            $table->text('text');
+            $table->string('name');
             $table->timestamps();
 
-            $table->index(['category_id', 'lang']);
+            $table->index(['category_id']);
 
             $table->foreign('category_id')
                 ->references('id')
@@ -39,13 +35,13 @@ class CreateCategoryTranslationsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('category_translations')) {
+        if (Schema::hasTable('category_images')) {
 
-            Schema::table('category_translations', function ($table) {
-                $table->dropForeign('category_translations_category_id_foreign');
+            Schema::table('category_images', function ($table) {
+                $table->dropForeign('category_images_category_id_foreign');
             });
 
-            Schema::drop('category_translations');
+            Schema::drop('category_images');
         }
     }
 }

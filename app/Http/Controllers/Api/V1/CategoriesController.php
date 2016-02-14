@@ -7,9 +7,9 @@ use App\Category;
 use App\Queries\Category\Show;
 use App\Queries\Category\Index;
 use App\Queries\Category\Store;
+use App\Queries\Category\Update;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
-use App\Queries\Category\Update;
 
 
 class CategoriesController extends Controller
@@ -83,7 +83,8 @@ class CategoriesController extends Controller
      */
     public function destroy(CategoryRequest $request, $categoryId)
     {
-        Category::findOrFail($categoryId)->delete();
+        $category = Category::findOrFail($categoryId);
+        $category->deleteSubtree(true);
 
         return $this->response->noContent();
     }
