@@ -21,13 +21,20 @@ class Store
     private $translations;
 
     /**
+     * @var
+     */
+    private $icon;
+
+    /**
      * @param $parentId
      * @param $translations
+     * @param $icon
      */
-    public function __construct($parentId, $translations)
+    public function __construct($parentId, $translations, $icon)
     {
         $this->parentId = $parentId;
         $this->translations = $translations;
+        $this->icon = $icon;
     }
 
     public function run()
@@ -36,6 +43,7 @@ class Store
 
         $category = new Category();
         $category->save();
+        $category->saveIcon($this->icon);
 
         foreach ($this->translations as $fields) {
             $category->translations()->create($fields);

@@ -38,8 +38,9 @@ class CategoriesController extends Controller
     {
         $parentId = $request->get('parent_id');
         $translations = $request->get('translations');
+        $icon = $request->file('icon');
 
-        (new Store($parentId, $translations))->run();
+        (new Store($parentId, $translations, $icon))->run();
 
         return $this->response->created();
     }

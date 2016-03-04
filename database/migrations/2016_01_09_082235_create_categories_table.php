@@ -14,7 +14,7 @@ class CreateCategoriesTable extends Migration
             $table->unsignedInteger('parent_id')->nullable();
             $table->unsignedInteger('position');
             $table->unsignedInteger('real_depth');
-            $table->softDeletes();
+            $table->string('icon');
             $table->timestamps();
 
             $table->foreign('parent_id')

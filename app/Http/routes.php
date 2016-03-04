@@ -52,7 +52,7 @@ Route::group([
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('migrate', function () {
-    Artisan::call('migrate');
+    Artisan::call('migrate:refresh');
     echo 'migrated';
 
     Artisan::call('db:seed');

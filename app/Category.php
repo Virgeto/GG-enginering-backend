@@ -49,4 +49,19 @@ class Category extends Entity implements CategoryInterface
     {
         return $this->hasMany(CategoryTranslation::class);
     }
+
+    /**
+     * Upload category icon and save its name into database.
+     *
+     * @param $icon
+     */
+    public function saveIcon($icon)
+    {
+        $path = public_path('images/categories/' . $this->id . '/icon');
+        $filename = $icon->getClientOriginalName();
+        $icon->move($path, $filename);
+
+        $this->icon = $filename;
+        $this->save();
+    }
 }
