@@ -33,6 +33,9 @@ Route::group([
         'uses' => 'AuthJwtController@refresh'
     ]);
 
+    Route::resource('categories', 'CategoriesController', [
+        'only' => ['index', 'show']
+    ]);
 
     /*
     |--------------------------------------------------------------------------
@@ -40,25 +43,18 @@ Route::group([
     |--------------------------------------------------------------------------
     */
     Route::group(['middleware' => 'jwt.auth'], function () {
-        Route::resource('roles', 'RolesController', [
-            'only' => ['index', 'show', 'store', 'update', 'destroy']
-        ]);
-
-
-        Route::resource('members', 'MembersController', [
-            'only' => ['index', 'show', 'store', 'update', 'destroy']
-        ]);
-
-
-        Route::resource('administrators', 'AdministratorsController', [
-            'only' => ['index', 'show', 'store', 'update', 'destroy']
-        ]);
-
-
         Route::resource('categories', 'CategoriesController', [
-            'only' => ['index', 'show', 'store', 'update', 'destroy']
+            'only' => ['store', 'update', 'destroy']
         ]);
     });
 });
 
+use Illuminate\Support\Facades\Artisan;
 
+Route::get('migrate', function () {
+    Artisan::call('migrate');
+    echo 'migrated';
+
+    Artisan::call('db:seed');
+    echo 'seeded';
+});

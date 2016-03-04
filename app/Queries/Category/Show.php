@@ -24,10 +24,25 @@ class Show extends Query
 
     public function run()
     {
-        $children = Category::findOrFail($this->categoryId)
-            ->getChildren();
-        $children = $this->addTranslation($children);
+        $category = Category::with('translation')
+            ->findOrFail($this->categoryId);
+        $category = $this->addChildren($category);
 
-        return $children;
+        return $category;
+    }
+
+    /**
+     * Add Categories children.
+     *
+     * @param $category
+     * @return mixed
+     */
+    private function addChildren($category)
+    {
+        $children = $category->getChildren();
+        $children->load('translation');
+        $category->children = $children;
+
+        return $category;
     }
 }

@@ -12,7 +12,7 @@ class Index extends Query
     public function run()
     {
         $categories = Category::getRoots();
-        $categories = $this->addTranslation($categories);
+        $categories->load('translation');
 
         return $categories;
     }

@@ -18,8 +18,6 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->timestamps();
-
-            $table->index(['name']);
         });
     }
 

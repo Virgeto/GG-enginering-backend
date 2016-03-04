@@ -52,9 +52,9 @@ class CategoriesController extends Controller
      */
     public function show($categoryId)
     {
-        $children = (new Show($categoryId))->run();
+        $category = (new Show($categoryId))->run();
 
-        return $this->response->ok($children);
+        return $this->response->ok($category);
     }
 
     /**

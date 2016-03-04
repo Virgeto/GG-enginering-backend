@@ -12,12 +12,7 @@
 */
 
 
-use App\Member;
 
-
-$factory->define(Member::class, function ($faker) {
-    return [];
-});
 
 
 
