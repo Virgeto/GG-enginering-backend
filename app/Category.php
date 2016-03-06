@@ -31,7 +31,7 @@ class Category extends Entity implements CategoryInterface
     public $timestamps = true;
 
     /**
-     * Get the user's first name.
+     * Get icon url.
      *
      * @param  string $icon
      * @return string
@@ -63,6 +63,16 @@ class Category extends Entity implements CategoryInterface
     public function translations()
     {
         return $this->hasMany(CategoryTranslation::class);
+    }
+
+    /**
+     * Images that belongs to current Category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany(CategoryImage::class);
     }
 
     /**

@@ -37,6 +37,8 @@ Route::group([
         'only' => ['index', 'show']
     ]);
 
+    Route::get('categories/{category_id}/images', 'CategoryImagesController@index');
+
     /*
     |--------------------------------------------------------------------------
     | API Auth routes
@@ -46,6 +48,10 @@ Route::group([
         Route::post('categories', 'CategoriesController@store');
         Route::post('categories/{category_id}', 'CategoriesController@update');
         Route::delete('categories/{category_id}', 'CategoriesController@destroy');
+
+
+        Route::post('categories/{category_id}/images', 'CategoryImagesController@store');
+        Route::delete('categories/{category_id}/images/{image_id}', 'CategoryImagesController@destroy');
     });
 });
 
