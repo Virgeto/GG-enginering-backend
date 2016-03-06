@@ -3,8 +3,10 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use JWTAuth;
+use App\Traits\AuthTrait;
+use App\User;
 use App\Enums\ResponseCode;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthJwtRequest;
 
@@ -18,6 +20,8 @@ use App\Http\Requests\AuthJwtRequest;
  */
 class AuthJwtController extends Controller
 {
+
+    use AuthTrait;
 
     /**
      * Authenticate the user using JWT.
@@ -62,6 +66,23 @@ class AuthJwtController extends Controller
         $token = JWTAuth::parseToken()->refresh();
 
         return $this->response->ok(['token' => $token]);
+    }
+
+    /**
+     * Return info about currently logged user.
+     *
+     * @param AuthJwtRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me(AuthJwtRequest $request)
+    {
+        $auth = $this->auth User();
+        $user = User::with([
+            'profile',
+            'roles'
+        ])->find($auth->id);
+
+        return $this->response->ok(['user' => $user]);
     }
 
 

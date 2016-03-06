@@ -45,6 +45,9 @@ Route::group([
     |--------------------------------------------------------------------------
     */
     Route::group(['middleware' => 'jwt.auth'], function () {
+        Route::get('users/me', 'AuthJwtController@me');
+
+
         Route::post('categories', 'CategoriesController@store');
         Route::post('categories/{category_id}', 'CategoriesController@update');
         Route::delete('categories/{category_id}', 'CategoriesController@destroy');
