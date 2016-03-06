@@ -43,9 +43,9 @@ Route::group([
     |--------------------------------------------------------------------------
     */
     Route::group(['middleware' => 'jwt.auth'], function () {
-        Route::resource('categories', 'CategoriesController', [
-            'only' => ['store', 'update', 'destroy']
-        ]);
+        Route::post('categories', 'CategoriesController@store');
+        Route::post('categories/{category_id}', 'CategoriesController@update');
+        Route::delete('categories/{category_id}', 'CategoriesController@destroy');
     });
 });
 

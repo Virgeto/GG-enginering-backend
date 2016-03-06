@@ -26,15 +26,21 @@ class Update
     private $translations;
 
     /**
+     * @var
+     */
+    private $icon;
+
+    /**
      * @param $categoryId
      * @param $parentId
      * @param $translations
      */
-    public function __construct($categoryId, $parentId, $translations)
+    public function __construct($categoryId, $parentId, $translations, $icon)
     {
         $this->categoryId = $categoryId;
         $this->parentId = $parentId;
         $this->translations = $translations;
+        $this->icon = $icon;
     }
 
     public function run()
@@ -42,6 +48,7 @@ class Update
         DB::beginTransaction();
 
         $category = Category::findOrFail($this->categoryId);
+        $category->saveIcon($this->icon);
 
         foreach ($this->translations as $fields) {
             $category->translations()

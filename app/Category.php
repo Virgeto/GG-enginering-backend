@@ -31,6 +31,21 @@ class Category extends Entity implements CategoryInterface
     public $timestamps = true;
 
     /**
+     * Get the user's first name.
+     *
+     * @param  string $icon
+     * @return string
+     */
+    public function getIconAttribute($icon)
+    {
+        if (!empty($icon)) {
+            return url('images/categories/' . $this->id . '/icon/' . $icon);
+        }
+
+        return $icon;
+    }
+
+    /**
      * Get translation for current language.
      *
      * @return mixed
@@ -57,11 +72,13 @@ class Category extends Entity implements CategoryInterface
      */
     public function saveIcon($icon)
     {
-        $path = public_path('images/categories/' . $this->id . '/icon');
-        $filename = $icon->getClientOriginalName();
-        $icon->move($path, $filename);
+        if (!is_null($icon)) {
+            $path = public_path('images/categories/' . $this->id . '/icon');
+            $filename = $icon->getClientOriginalName();
+            $icon->move($path, $filename);
 
-        $this->icon = $filename;
-        $this->save();
+            $this->icon = $filename;
+            $this->save();
+        }
     }
 }

@@ -8,6 +8,7 @@ use App\Queries\Category\Show;
 use App\Queries\Category\Index;
 use App\Queries\Category\Store;
 use App\Queries\Category\Update;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 
@@ -69,8 +70,9 @@ class CategoriesController extends Controller
     {
         $parentId = $request->get('parent_id');
         $translations = $request->get('translations');
+        $icon = $request->file('icon');
 
-        (new Update($categoryId, $parentId, $translations))->run();
+        (new Update($categoryId, $parentId, $translations, $icon))->run();
 
         return $this->response->noContent();
     }
@@ -85,6 +87,14 @@ class CategoriesController extends Controller
     public function destroy(CategoryRequest $request, $categoryId)
     {
         $category = Category::findOrFail($categoryId);
+        $children = $category->getChildren();
+
+        foreach ($children as $child) {
+            File::deleteDirectory(public_path('images/categories/' . $child->id));
+        }
+
+        File::deleteDirectory(public_path('images/categories/' . $category->id));
+
         $category->deleteSubtree(true);
 
         return $this->response->noContent();
