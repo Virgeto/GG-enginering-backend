@@ -46,6 +46,7 @@ class Store
         $category->saveIcon($this->icon);
 
         foreach ($this->translations as $fields) {
+            $fields['slug'] = slug($fields['name']);
             $category->translations()->create($fields);
         }
 

@@ -20,6 +20,7 @@ class CreateCategoryTranslationsTable extends Migration
             $table->string('lang', 2);
             $table->string('name', 200);
             $table->text('text');
+            $table->string('slug', 200);
             $table->timestamps();
 
             $table->index(['category_id', 'lang']);

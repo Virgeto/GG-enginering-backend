@@ -15,16 +15,23 @@ class Show extends Query
     private $categoryId;
 
     /**
-     * @param $categoryId
+     * @var
      */
-    public function __construct($categoryId)
+    private $relations;
+
+    /**
+     * @param $categoryId
+     * @param $input
+     */
+    public function __construct($categoryId, $input)
     {
         $this->categoryId = $categoryId;
+        $this->relations = $input['with'];
     }
 
     public function run()
     {
-        $category = Category::with('translation')
+        $category = Category::withRelations($this->relations)
             ->findOrFail($this->categoryId);
         $category = $this->addChildren($category);
 

@@ -41,7 +41,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
 
-        if ($this->isApiRequest($request)) {
+        if ($this->isApi()) {
 
             return $this->apiException($e);
 
@@ -53,16 +53,11 @@ class Handler extends ExceptionHandler
     /**
      * Check if the request is made to API route.
      *
-     * @param $request
      * @return bool
      */
-    private function isApiRequest($request)
+    private function isApi()
     {
-        $fistSegment = array_first($request->segments(), function ($key, $value) {
-            return $value;
-        });
-
-        if ($fistSegment == 'api') {
+        if (env('PROJECT_TYPE') == 'api') {
             return true;
         }
 

@@ -22,7 +22,8 @@ class CategoryTranslation extends Base
     protected $fillable = [
         'lang',
         'name',
-        'text'
+        'text',
+        'slug'
     ];
 
     /**

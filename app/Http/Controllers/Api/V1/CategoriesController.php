@@ -49,12 +49,14 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param CategoryRequest $request
      * @param $categoryId
      * @return \Illuminate\Http\Response
      */
-    public function show($categoryId)
+    public function show(CategoryRequest $request, $categoryId)
     {
-        $category = (new Show($categoryId))->run();
+        $input = $request->only(['with']);
+        $category = (new Show($categoryId, $input))->run();
 
         return $this->response->ok($category);
     }

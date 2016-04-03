@@ -3,11 +3,14 @@
 
 namespace App;
 
+use App\Traits\RelationTrait;
 use Franzose\ClosureTable\Models\Entity;
 
 
 class Category extends Entity implements CategoryInterface
 {
+
+    use RelationTrait;
 
     /**
      * The table associated with the model.

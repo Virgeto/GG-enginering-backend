@@ -28,6 +28,11 @@ class CategoryRequest extends Request
             case $this->wantsToList():
                 $rules = $this->listRules;
                 break;
+            case $this->wantsToShow():
+                $rules = [
+                    'with' => 'in:translation,translations'
+                ];
+                break;
             case $this->wantsToStore():
             case $this->wantsToUpdate():
                 $rules = [

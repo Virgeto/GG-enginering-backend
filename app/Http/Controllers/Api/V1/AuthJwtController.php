@@ -27,7 +27,6 @@ class AuthJwtController extends Controller
      * Authenticate the user using JWT.
      *
      * @param AuthJwtRequest $request
-     *
      * @return $this|\Illuminate\Http\JsonResponse
      */
     public function authenticate(AuthJwtRequest $request)
@@ -37,7 +36,10 @@ class AuthJwtController extends Controller
         // Attempt to verify the credentials and create a token for the user
         if (!$token = JWTAuth::attempt($credentials)) {
 
-            $response = $this->response->error(ResponseCode::UNAUTHORIZED, trans('texts.invalid_credentials'));
+            $response = $this->response->error(
+                ResponseCode::UNAUTHORIZED,
+                trans('texts.invalid_credentials')
+            );
 
         } else {
 
@@ -76,7 +78,7 @@ class AuthJwtController extends Controller
      */
     public function me(AuthJwtRequest $request)
     {
-        $auth = $this->auth User();
+        $auth = $this->authUser();
         $user = User::with([
             'profile',
             'roles'
